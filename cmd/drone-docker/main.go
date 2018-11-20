@@ -208,6 +208,11 @@ func main() {
 			EnvVar: "PLUGIN_PURGE",
 		},
 		cli.StringFlag{
+			Name:   "docker.network",
+			Usage:  "docker network",
+			EnvVar: "PLUGIN_NETWORK,DOCKER_NETWORK",
+		},
+		cli.StringFlag{
 			Name:   "repo.branch",
 			Usage:  "repository default branch",
 			EnvVar: "DRONE_REPO_BRANCH",
@@ -250,6 +255,7 @@ func run(c *cli.Context) error {
 			Labels:      c.StringSlice("custom-labels"),
 			LabelSchema: c.StringSlice("label-schema"),
 			NoCache:     c.Bool("no-cache"),
+			Network:     c.String("docker.network"),
 		},
 		Daemon: docker.Daemon{
 			Registry:      c.String("docker.registry"),
